@@ -43,6 +43,8 @@ for file in files:
             tick.append(info[ticker]['fundamental'][point])
         data.append(tick)
     os.remove(file)
-points = ['symbol','netProfitMarginMRQ','peRatio','pegRatio','high52']
+points = ['symbol', 'Margin', 'PE', 'PEG', 'high52']
 
 df_results = pd.DataFrame(data,columns=points)
+
+df_peg = df_results[(df_results['PEG'] < 1) & (df_results['PEG'] > 0) & (df_results['Margin'] > 20) & (df_results['PE'] > 10)]
